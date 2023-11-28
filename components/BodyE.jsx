@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 
-export default function bodyM() {
+export default function BodyM() {
 
   const [data1, setData1] = useState([]);
   const [selectedFrom, setFromloc] = useState('');
