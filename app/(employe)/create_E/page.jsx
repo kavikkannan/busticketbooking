@@ -1,11 +1,11 @@
 import React from 'react'
-import CreateT from '@/components/Createtask'
-import Header from '@/components/Header_LPage';
+import CreateT from '@/components/Bookinghistory'
+
 
 export default function page () {
   return (
     <div>
-    <div className=" bg-gray-300">
+    <div >
       <CreateT/>
     </div>
     

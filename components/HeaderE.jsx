@@ -10,7 +10,7 @@ import {
 import { ChevronDownIcon, PhoneIcon } from '@heroicons/react/20/solid';
 import { useRouter } from 'next/navigation';
 const products = [
-  { name: 'View Tickets', description: 'Check your Booking Details here.',href: '#', icon: ChartPieIcon },
+  { name: 'View Tickets', description: 'Check your Booking Details here.',href: 'bookinghistory', icon: ChartPieIcon },
   { name: 'about', description: 'Wanna know about us?', href: '#', icon: CursorArrowRaysIcon },
  ];
 const callsToAction = [
@@ -25,18 +25,39 @@ function classNames(...classes) {
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router=useRouter()
-  const navi = async (a) => {
+
+  const navi =  (a) => {
     router.push(a)
   }
+  const handellogout = async () => {
+      try {
+        const response = await fetch(`http://localhost:9000/api/logout`, {
+          method: 'POST', 
+          mode:"cors",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+         });
+    
+        if (response.ok) {
+          router.push('/')
+        } else {
+          console.error('Logout failed');
+        }
+      } catch (error) {
+        console.error('Error during logout:', error);
+      }
+    };
   return (
     <header className="bg-black">
       <nav className=" mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="  relative flex lg:flex">
           <Link href="/home_employe" className="-m-1.5 p-1.5">
-            <span className="text-black sr-only">Your Company</span>
+            <span className="text-black sr-only">Home</span>
             <img className=" h-8 w-auto"
                 src=""
-                alt="your company"
+                alt="Home"
             />
           </Link>
         </div>
@@ -52,9 +73,7 @@ export default function Header() {
           </button>
         </div>
         <Popover.Group className="   hidden lg:flex lg:flex-1 gap-x-12 -b-1.5 px-28">
-        <Link href="/create_E" className=" relative right-4 text-sm font-semibold leading-6 text-green-200">
-           create
-          </Link>
+        
           
           <Popover className="absolute right-16">
             <Popover.Button className=" flex items-center gap-x-1 text-sm font-semibold leading-6 text-green-200">
@@ -82,7 +101,7 @@ export default function Header() {
                         <item.icon className="h-6 w-6 text-gray-600 group-hover:text-green-300" aria-hidden="true" />
                       </div>
                       <div className="flex-auto">
-                        <Link href="/profile" className="block font-semibold text-green-900 hover:text-green-300">
+                        <Link href={item.href} className="block font-semibold text-green-900 hover:text-green-300">
                           {item.name}
                           <span className="absolute inset-0" />
                         </Link>
@@ -93,10 +112,10 @@ export default function Header() {
                 </div>
       
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="/" className="bg-gray-200 flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-black hover:bg-green-400">
+          <button onClick={handellogout} className="bg-gray-200 flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-black hover:bg-green-400">
             Log out 
             <span aria-hidden="true">&rarr;</span>
-          </Link>
+          </button>
         </div>
               </Popover.Panel>
             </Transition>
@@ -154,26 +173,15 @@ export default function Header() {
                     </>
                   )}
                 </Disclosure>
-                <Link
-                  href="/create_E"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  create
-                </Link>
-                <Link
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Features1
-                </Link>
+                
               </div>
               <div className="py-6">
-                <Link
-                  href="/"
+                <button
+                onClick={handellogout}
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Log out
-                </Link>
+                </button>
               </div>
             </div>
           </div>

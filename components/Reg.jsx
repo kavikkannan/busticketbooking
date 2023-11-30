@@ -25,7 +25,6 @@ export default function Reg() {
           name,
           email,
           password,
-          position,
         })
       });
 

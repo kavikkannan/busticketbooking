@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation';
 
 export default function BodyM() {
 
@@ -8,7 +9,15 @@ export default function BodyM() {
   const [selectedFrom, setFromloc] = useState('');
   const [selectedTo, setToloc] = useState('');
   const [selectedDate, setDate] = useState('');
+  const [BusId, setBusid] = useState(null);
+  const router=useRouter();
 
+sessionStorage.setItem('BUSID',BusId)
+  const handleBook = (busId) => {
+    setBusid(busId);
+     sessionStorage.setItem('BUSID',BusId);
+    router.push('/ticketbooking')
+  };
   const handleCheckAvailability = async () => {
     try {
       const data = await fetch('http://localhost:8000/bus/');
