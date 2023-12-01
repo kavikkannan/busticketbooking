@@ -8,15 +8,19 @@ const TicketBooking = () => {
   const [leftSideSeats, setLeftSideSeats] = useState([]);
   const [rightSideSeats, setRightSideSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const BUSID=sessionStorage.getItem('BUSID');
+  const [BUSID,setBUSID]=useState(null);
   const [loading, setLoading] = useState(false);
-
+  if (typeof window !== 'undefined') {
+    setBUSID(sessionStorage.getItem('BUSID'));
+  }
   useEffect(() => {
     
-    const id = sessionStorage.getItem('BUSID');
-    if (!id) {
-      router.push('/ticket_main');
+    if (typeof window !== 'undefined') {
+      if (!BUSID) {
+        router.push('/ticket_main');
+      }
     }
+    
     }, []);
 
 

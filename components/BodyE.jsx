@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-
 export default function BodyM() {
   const [data1, setData1] = useState([]);
   const [selectedFrom, setFromloc] = useState('');
@@ -12,7 +11,6 @@ export default function BodyM() {
 
   const handleBook = (busId) => {
     if (typeof window !== 'undefined') {
-      // Check if window (browser) is available before using sessionStorage
       sessionStorage.setItem('BUSID', busId);
     }
     router.push('/ticketbooking');
