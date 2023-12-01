@@ -35,12 +35,12 @@ const AboutPage = () => {
         <div className="mt-8">
           <h2 className="text-2xl text-green-200 font-bold mb-4">Contact Us</h2>
           <p className="text-white mb-6">
-            Have questions or feedback? We'd love to hear from you! Reach out to our support team at support@example.com for assistance.
+            Have questions or feedback? We&apos;d love to hear from you! Reach out to our support team at support@example.com for assistance.
           </p>
         </div>
 
         <p className="text-white mt-8">
-          Thank you for choosing our platform. We're excited to be part of your travel journey!
+          Thank you for choosing our platform. We&apos;re excited to be part of your travel journey!
         </p>
       </div>
     </div>

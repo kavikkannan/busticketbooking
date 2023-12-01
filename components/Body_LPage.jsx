@@ -2,8 +2,8 @@ import React from "react";
 
 const BusTicketBookingLanding = () => {
   return (
-    <div className=" py-12  bg-[url('/images/bg1.jpg')] bg-cover">
-      <div className="container  mx-auto px-4">
+    <div className="py-12 bg-[url(&apos;/images/bg1.jpg&apos;)] bg-cover">
+      <div className="container mx-auto px-4">
         <h1 className="text-3xl text-green-200 font-bold mb-4">Welcome to Our Bus Ticket Booking System</h1>
         <p className="text-lg text-white mb-8">
           Explore, plan, and book your bus tickets hassle-free with our user-friendly and efficient bus ticket booking system.
@@ -40,13 +40,13 @@ const BusTicketBookingLanding = () => {
         <div className="mt-8">
           <h2 className="text-2xl text-green-200 font-bold mb-4">How It Works:</h2>
           <p className="text-white mb-6">
-            Search & Select: Enter your travel details, explore available buses, and select your preferred option.
+            Search &amp; Select: Enter your travel details, explore available buses, and select your preferred option.
           </p>
           <p className="text-white mb-6">
-            Customize & Book: Choose your seats, add passengers' details, and proceed to secure payment.
+            Customize &amp; Book: Choose your seats, add passengers&apos; details, and proceed to secure payment.
           </p>
           <p className="text-white mb-6">
-            Confirmation & Travel: Get instant confirmation and embark on a hassle-free journey.
+            Confirmation &amp; Travel: Get instant confirmation and embark on a hassle-free journey.
           </p>
         </div>
 
