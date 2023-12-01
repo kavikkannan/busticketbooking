@@ -1,6 +1,4 @@
 "use client";
-import {  useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 
@@ -17,6 +15,9 @@ export default function Header() {
                 alt="your company"
             />
           </Link>
+        </div>
+        <div className='text-black font-bold'>
+          GREEN WHEELS (name reg)
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link href="signin" className="text-sm font-semibold leading-6 text-gray-900">

@@ -3,17 +3,11 @@ import {useRouter} from "next/navigation"
 import Link from "next/link"
 import React, { useState } from "react"; 
 import Loading from '@/components/Loading';
-import { Result } from "postcss";
 export default function Login() {
   const [loading, setLoading] = useState(false);
   const router=useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [data, setData] = useState([]);
-    
-
-
-
   const Signin = async () => {
     try {
 
@@ -63,7 +57,10 @@ export default function Login() {
         </div>
       ) : (
       
-        <div className="absolute  w-full bg-black  flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="absolute h-screen w-full bg-black   flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+          <div className="absolute  left-[-100vw]">
+            <img src="/images/bg1.jpg" alt="" />
+          </div>
           <div className=" absolute top-10 right-13 sm:mx-auto sm:w-full sm:max-w-sm">
           <Link href="/"><img
               className=" text-green-200 mx-auto h-10 w-auto"

@@ -1,14 +1,25 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-
+import Loading from './Loading';
 const TicketBooking = () => {
-
+  const router=useRouter();
   const [seatsData, setSeatsData] = useState([]);
   const [leftSideSeats, setLeftSideSeats] = useState([]);
   const [rightSideSeats, setRightSideSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [isselected, setIsSelected] = useState(false);
   const BUSID=sessionStorage.getItem('BUSID');
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    
+    const id = sessionStorage.getItem('BUSID');
+    if (!id) {
+      router.push('/ticket_main');
+    }
+    }, []);
+
+
   useEffect(() => {
     const fetchSeatsData = async () => {
       try {
@@ -41,16 +52,13 @@ const TicketBooking = () => {
   const handleSeatSelection = (id) => {
     const seatIndex = selectedSeats.indexOf(id);
     const isSelected = seatIndex !== -1;
-  
-    // Toggle seat selection
+
     if (isSelected) {
       const updatedSelectedSeats = selectedSeats.filter((seat) => seat !== id);
       setSelectedSeats(updatedSelectedSeats);
     } else {
       setSelectedSeats([...selectedSeats, id]);
     }
-  
-    // Toggle seat background color
     const updatedLeftSeats = leftSideSeats.map((seat) =>
       seat.id === id ? { ...seat, isSelected: !isSelected } : seat
     );
@@ -60,12 +68,17 @@ const TicketBooking = () => {
     setLeftSideSeats(updatedLeftSeats);
     setRightSideSeats(updatedRightSeats);
   };
+
+  const handleGoBack = () => {
+    sessionStorage.removeItem('BUSID');
+      router.push('/ticket_main');
+  };
   
 
   const handleConfirmBooking = async () => {
     try {
       let bookedstatus=true;
-      
+      setLoading(true);
       for(let i=0;i<selectedSeats.length;i++){
         let b=selectedSeats[i];
         const response = await fetch(`http://localhost:8000/bookticket/${b}`, {
@@ -120,7 +133,7 @@ const TicketBooking = () => {
         }),
         });
         if (response.ok) {
-          console.log('Booking confirmed!');
+          
         } else {
           console.error('Failed to confirm booking');
         }
@@ -128,35 +141,19 @@ const TicketBooking = () => {
       
     } catch (error) {
       console.error('Error confirming booking:', error);
+    } finally{
+      sessionStorage.removeItem('BUSID');
+      router.push('/ticket_main');
     }
   };
-/*   const handleSeatBooking = async (id,bookedstatus) => {
-    try {
-      const response = await fetch(`http://localhost:8000/bookticket/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ bookedstatus}), 
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if(bookedstatus){
-        console.log(bookedstatus);
-      }
-      if (response.ok) {
-        
-        const updatedSeats = seatsData.map((seat) =>
-          seat.seatid === id ? { ...seat, bookedstatus: true } : seat
-        );
-        setSeatsData(updatedSeats);
-      } else {
-        console.error('Failed to book seat');
-      }
-    } catch (error) {
-      console.error('Error booking seat:', error);
-    }
-  }; */
 
   return (
+    <>
+      {loading ? (
+          <div className="relative">
+          {loading && <Loading />} 
+        </div>
+      ) : (
   <div className="w-full h-screen flex flex-col justify-center bg-black">
     <div className="flex flex-col justify-between items-center bg-black text-white">
       <div className="border-2 border-green-400 rounded-xl p-2 pr-4">
@@ -205,15 +202,6 @@ const TicketBooking = () => {
                   ))}
                 </div>
               </div>
-
-              <div className="flex gap-[7px] p-2">
-                {/* {[55, 56, 57, 58, 59, 60, 61].map((item) => (
-                  <button type="submit" key={item} className=" border-2 bg-green-400 border-green-500 p-2 text-center rounded-md">
-                    {item}
-                  </button>
-                ))} */}
-              </div>
-
               <div className="legend flex items-center mt-4">
                 <div className="bg-green-200 text-black border-2 border-green-500 p-2 rounded-md mr-2"></div>
                 <span>Selected</span>
@@ -237,6 +225,7 @@ const TicketBooking = () => {
                         </p>
                         ))}
               </div>
+              <div className='flex gap-3'>
               <button
                 className="bg-green-500 text-white px-4 py-2 rounded-md"
                 onClick={handleConfirmBooking}
@@ -244,8 +233,18 @@ const TicketBooking = () => {
               >
                 Confirm Booking
               </button>
+              <button
+                className="bg-green-500 text-white px-4 py-2 rounded-md"
+                onClick={handleGoBack}
+                
+              >
+                go back
+              </button>
+              </div>
             </div>
   </div>
+  )}
+  </>
   );
 };
 

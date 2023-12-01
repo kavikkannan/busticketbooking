@@ -44,10 +44,11 @@ export default function Reg() {
       <>
       {loading ? (
           <div className="relative">
-          {loading && <Header_LPage />} {/* Display loading animation when loading is true */}
+          {loading && <Header_LPage />} 
         </div>
       ) : (
         <div className="absolute  w-full bg-black-300  flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+          
           <div className=" absolute top-10 right-13 sm:mx-auto sm:w-full sm:max-w-sm">
           <Link href="/"><img
               className=" text-green-200 mx-auto h-10 w-auto"
@@ -55,6 +56,9 @@ export default function Reg() {
               alt="Your Company"
             />
             </Link>
+          </div>
+          <div className="absolute left-[-100vw]">
+            <img src="/images/bg1.jpg" alt="" />
           </div>
           <div className=" relative bottom-20 sm:mx-auto sm:w-full sm:max-w-sm">
             
@@ -87,10 +91,10 @@ export default function Reg() {
                 </label>
                 <div className="mt-2">
                   <input
-                    id="username"
-                    name="username "
+                    id="name"
+                    name="name "
                     type="text"
-                    autoComplete="username"
+                    autoComplete="name"
                     required
                     onChange={(e) => setUsername(e.target.value)}
                     className="block w-full rounded-md border-0 py-1.5 p-2 text-black shadow-sm ring-1 ring-inset ring-green-300 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"

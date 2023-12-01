@@ -10,8 +10,8 @@ import {
 import { ChevronDownIcon, PhoneIcon } from '@heroicons/react/20/solid';
 import { useRouter } from 'next/navigation';
 const products = [
-  { name: 'View Tickets', description: 'Check your Booking Details here.',href: 'bookinghistory', icon: ChartPieIcon },
-  { name: 'about', description: 'Wanna know about us?', href: '#', icon: CursorArrowRaysIcon },
+  { name: 'View Tickets', description: 'Check your Booking Details here.',href:'bookinghistory', icon: ChartPieIcon },
+  { name: 'about', description: 'Wanna know about us?', href: 'about', icon: CursorArrowRaysIcon },
  ];
 const callsToAction = [
   { name: 'Contact manager', href: '#', icon: PhoneIcon },
