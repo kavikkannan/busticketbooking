@@ -10,24 +10,11 @@ const TicketBooking = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [BUSID,setBUSID]=useState(null);
   const [loading, setLoading] = useState(false);
-  if (typeof window !== 'undefined') {
-    setBUSID(sessionStorage.getItem('BUSID'));
-  }
-  useEffect(() => {
-    
-    if (typeof window !== 'undefined') {
-      if (!BUSID) {
-        router.push('/ticket_main');
-      }
-    }
-    
-    }, []);
-
 
   useEffect(() => {
     const fetchSeatsData = async () => {
       try {
-        
+        setBUSID(sessionStorage.getItem('BUSID'));
         const response = await fetch(`http://localhost:8000/allticket/${BUSID}`);
         if (response) {
           const data = await response.json();
@@ -39,10 +26,12 @@ const TicketBooking = () => {
         console.error('Error fetching data:', error);
       }
     };
+    if (!BUSID) {
+      router.push('/ticket_main');
+    }
 
     fetchSeatsData();
   }, []);
-
   useEffect(() => {
     const totalSeats = seatsData.length;
     const halfLength = Math.ceil(totalSeats / 2);
