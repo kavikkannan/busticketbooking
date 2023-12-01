@@ -8,13 +8,15 @@ const TicketBooking = () => {
   const [leftSideSeats, setLeftSideSeats] = useState([]);
   const [rightSideSeats, setRightSideSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [BUSID,setBUSID]=useState(null);
+  
   const [loading, setLoading] = useState(false);
+
+
 
   useEffect(() => {
     const fetchSeatsData = async () => {
       try {
-        setBUSID(sessionStorage.getItem('BUSID'));
+        const BUSID=sessionStorage.getItem('BUSID');
         const response = await fetch(`http://localhost:8000/allticket/${BUSID}`);
         if (response) {
           const data = await response.json();
@@ -26,12 +28,10 @@ const TicketBooking = () => {
         console.error('Error fetching data:', error);
       }
     };
-    if (!BUSID) {
-      router.push('/ticket_main');
-    }
 
     fetchSeatsData();
   }, []);
+
   useEffect(() => {
     const totalSeats = seatsData.length;
     const halfLength = Math.ceil(totalSeats / 2);
@@ -98,7 +98,7 @@ const TicketBooking = () => {
        })
     const user= await u.json();
        let userid= user.id;
-
+       const BUSID=sessionStorage.getItem('BUSID');
       let busid=parseInt(BUSID, 10);
         const log = await fetch(`http://localhost:8000/user/`, {
         method: "POST",
