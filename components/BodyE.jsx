@@ -11,7 +11,10 @@ export default function BodyM() {
   const [seatNumbers, setSeatNumbers] = useState({});
 
   const handleBook = (busId) => {
-    sessionStorage.setItem('BUSID', busId);
+    if (typeof window !== 'undefined') {
+      // Check if window (browser) is available before using sessionStorage
+      sessionStorage.setItem('BUSID', busId);
+    }
     router.push('/ticketbooking');
   };
 
