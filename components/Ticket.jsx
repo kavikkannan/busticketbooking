@@ -135,6 +135,7 @@ const TicketBooking = () => {
     } catch (error) {
       console.error('Error confirming booking:', error);
     } finally{
+      alert('booking succesful')
       sessionStorage.removeItem('BUSID');
       router.push('/ticket_main');
     }
@@ -148,12 +149,9 @@ const TicketBooking = () => {
         </div>
       ) : (
   <div className="w-full h-screen flex flex-col justify-center bg-black">
-    <div className="flex flex-col justify-between items-center bg-black text-white">
-      <div className="border-2 border-green-400 rounded-xl p-2 pr-4">
-        Tickets For kk Travels
-      </div>
+    <div className="flex flex-col gap-2 justify-between items-center bg-black text-white">
       <br />
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-2'>
             <div className="flex flex-col  items-center border-2 border-green-500 rounded-xl p-10">
               <div className="flex gap-10 ">
                 <div className="grid grid-cols-3 gap-[10px]">
@@ -168,10 +166,10 @@ const TicketBooking = () => {
                           : 'border-green-500'
                       }`}
                       
-                      onClick={() => !seat.bookedstatus && handleSeatSelection(seat.id)}
+                      onClick={() => !seat.bookedstatus && handleSeatSelection(seat.seatnumber)}
                       disabled={seat.bookedstatus}
                     >
-                      {seat.id}
+                      {seat.seatnumber}
                     </button>
                   ))}
                 </div>
@@ -187,10 +185,10 @@ const TicketBooking = () => {
                           : 'border-green-500'
                       }`}
                       
-                      onClick={() => !seat.bookedstatus && handleSeatSelection(seat.id)}
+                      onClick={() => !seat.bookedstatus && handleSeatSelection(seat.seatnumber)}
                       disabled={seat.bookedstatus}
                     >
-                      {seat.id}
+                      {seat.seatnumber}
                     </button>
                   ))}
                 </div>
