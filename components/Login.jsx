@@ -13,7 +13,7 @@ export default function Login() {
 
       setLoading(true);
   
-      const log = await fetch(`http://localhost:9000/api/login`, {
+      const log = await fetch(`https://go-jwt-kkk.onrender.com/api/login`, {
         method: "POST",
         mode:"cors",
         headers: {

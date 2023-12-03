@@ -50,7 +50,7 @@ export default function Header() {
       }
     };
   return (
-    <header className="bg-black">
+    <div className="bg-black">
       <nav className=" mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="  relative flex lg:flex">
           <Link href="/home_employe" className="-m-1.5 p-1.5">
@@ -187,6 +187,6 @@ export default function Header() {
           </div>
         </Dialog.Panel>
       </Dialog>
-    </header>
+    </div>
   );
 }
