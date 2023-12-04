@@ -53,7 +53,7 @@ export default function Header() {
     <div className="bg-black">
       <nav className=" mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="  relative flex lg:flex">
-          <Link href="/home_employe" className="-m-1.5 p-1.5">
+          <Link href="/ticket_main" className="-m-1.5 p-1.5">
             <span className="text-black sr-only">Home</span>
             <img className=" h-8 w-auto"
                 src=""
@@ -129,7 +129,7 @@ export default function Header() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <Link href="/home_employe" className="-m-1.5 p-1.5">
+            <Link href="/ticket_main" className="-m-1.5 p-1.5">
               <span className="text-black sr-only">Your Company</span>
               <img
                 className=" h-8 w-auto"
