@@ -17,7 +17,7 @@ const TicketBooking = () => {
     const fetchSeatsData = async () => {
       try {
         const BUSID=sessionStorage.getItem('BUSID');
-        const response = await fetch(`http://localhost:8000/allticket/${BUSID}`);
+        const response = await fetch(`https://go-busticket-kk.onrender.com/allticket/${BUSID}`);
         if (response) {
           const data = await response.json();
           setSeatsData(data);
@@ -74,7 +74,7 @@ const TicketBooking = () => {
       setLoading(true);
       for(let i=0;i<selectedSeats.length;i++){
         let b=selectedSeats[i];
-        const response = await fetch(`http://localhost:8000/bookticket/${b}`, {
+        const response = await fetch(`https://go-busticket-kk.onrender.com/bookticket/${b}`, {
           method: 'PUT',
           body: JSON.stringify({ bookedstatus }),
           headers: {
@@ -88,7 +88,7 @@ const TicketBooking = () => {
         }
       }
       
-      const u = await fetch(`http://localhost:9000/api/user`,{
+      const u = await fetch(`https://go-jwt-kkk.onrender.com/api/user`,{
       method : "GET",
       mode : "cors",
       headers:{
@@ -100,7 +100,7 @@ const TicketBooking = () => {
        let userid= user.id;
        const BUSID=sessionStorage.getItem('BUSID');
       let busid=parseInt(BUSID, 10);
-        const log = await fetch(`http://localhost:8000/user/`, {
+        const log = await fetch(`https://go-busticket-kk.onrender.com/user/`, {
         method: "POST",
         headers: {
           "Content-Type": "pkglication/json",
@@ -114,7 +114,7 @@ const TicketBooking = () => {
 
       for(let i=0;i<selectedSeats.length;i++){
         let seatnumber=selectedSeats[i];
-        const response = await fetch(`http://localhost:8000/bookdetails/`, {
+        const response = await fetch(`https://go-busticket-kk.onrender.com/bookdetails/`, {
           method: "POST",
         headers: {
           "Content-Type": "pkglication/json",

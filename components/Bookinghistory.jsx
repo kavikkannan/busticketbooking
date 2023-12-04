@@ -9,7 +9,7 @@ const Bookinghistory = () => {
   useEffect(() => {
     const fetchSeatsData = async () => {
       try {
-        const u = await fetch(`http://localhost:9000/api/user`, {
+        const u = await fetch(`https://go-jwt-kkk.onrender.com/api/user`, {
           method: "GET",
           mode: "cors",
           headers: {
@@ -21,14 +21,14 @@ const Bookinghistory = () => {
         const user = await u.json();
         let userid = user.id;
 
-        const response = await fetch(`http://localhost:8000/bookeduser/${userid}`);
+        const response = await fetch(`https://go-busticket-kk.onrender.com/bookeduser/${userid}`);
         if (response.ok) {
           const data = await response.json();
 
           const promises = data.map(async ({ userid, busid }) => {
             const [seatResponse, busResponse] = await Promise.all([
-              fetch(`http://localhost:8000/bookedticket/${busid}`),
-              fetch(`http://localhost:8000/bus/${busid}`),
+              fetch(`https://go-busticket-kk.onrender.com/bookedticket/${busid}`),
+              fetch(`https://go-busticket-kk.onrender.com/bus/${busid}`),
             ]);
 
             const [seatData, busData] = await Promise.all([
@@ -72,7 +72,7 @@ const Bookinghistory = () => {
 
   const fetchBusDetails = async (busId) => {
     try {
-      const response = await fetch(`http://localhost:8000/bus/${busId}`);
+      const response = await fetch(`https://go-busticket-kk.onrender.com/bus/${busId}`);
       if (response.ok) {
         const data = await response.json();
         setBusDetails(data);
@@ -87,7 +87,7 @@ const Bookinghistory = () => {
   const fetchSeatNumber = async (busId) => {
     try {
       await fetchBusDetails(busId);
-      const response = await fetch(`http://localhost:8000/bookedticket/${busId}`);
+      const response = await fetch(`https://go-busticket-kk.onrender.com/bookedticket/${busId}`);
       if (response.ok) {
         const data = await response.json();
         

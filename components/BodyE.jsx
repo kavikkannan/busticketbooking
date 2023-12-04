@@ -18,7 +18,7 @@ export default function BodyM() {
 
   const handleCheckAvailability = async () => {
     try {
-      const data = await fetch('http://localhost:8000/bus/');
+      const data = await fetch('https://go-busticket-kk.onrender.com/bus/');
     const result = await data.json();
 
     const filteredData = result.filter(
@@ -40,7 +40,7 @@ export default function BodyM() {
 
   const calculateAvailableSeats = async (busId) => {
     try {
-      const response = await fetch(`http://localhost:8000/allticket/${busId}`);
+      const response = await fetch(`https://go-busticket-kk.onrender.com/allticket/${busId}`);
       if (response.ok) {
         const data = await response.json();
         let noseat=0;

@@ -15,7 +15,7 @@ export default function Reg() {
 
       setLoading(true);
       
-      const response = await fetch(`http://localhost:9000/api/register`, {
+      const response = await fetch(`https://go-jwt-kkk.onrender.com/api/register`, {
         method: "POST",
         mode:"cors",
         headers: {
