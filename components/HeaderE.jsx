@@ -31,7 +31,7 @@ export default function Header() {
   }
   const handellogout = async () => {
       try {
-        const response = await fetch(`http://localhost:9000/api/logout`, {
+        const response = await fetch(`https://go-jwt-kkk.onrender.com/api/logout`, {
           method: 'POST', 
           mode:"cors",
           headers: {

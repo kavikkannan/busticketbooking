@@ -70,23 +70,10 @@ const Bookinghistory = () => {
     fetchSeatsData();
   }, []);
 
-  const fetchBusDetails = async (busId) => {
-    try {
-      const response = await fetch(`https://go-busticket-kk.onrender.com/bus/${busId}`);
-      if (response.ok) {
-        const data = await response.json();
-        setBusDetails(data);
-      } else {
-        console.error('Failed to fetch bus details');
-      }
-    } catch (error) {
-      console.error('Error fetching bus details:', error);
-    }
-  };
+
 
   const fetchSeatNumber = async (busId) => {
     try {
-      await fetchBusDetails(busId);
       const response = await fetch(`https://go-busticket-kk.onrender.com/bookedticket/${busId}`);
       if (response.ok) {
         const data = await response.json();
